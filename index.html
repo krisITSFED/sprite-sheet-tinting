@@ -86,6 +86,84 @@
             <div class="reference" style="--target: #282a73"><span class="swatch"
                     aria-hidden="true"></span><span>#282A73 reference</span></div>
         </section>
+        <section aria-labelledby="blue-checks-heading">
+            <h2 id="blue-checks-heading">Blue shades / universal SVG tint</h2>
+            <!-- DEMO ONLY: each simultaneous brand sample needs its own filter IDs.
+                 Inline color variables live on the wrapper so its SVG definitions inherit them too.
+                 Production page-wide branding still uses the single shared filter pair above. -->
+            <div class="comparison">
+                <article class="sample flood" style="--icon-default-hex: #000000; --icon-hover-hex: #001f3f; --icon-color: url(#navy-default); --icon-hover: url(#navy-hover)">
+                    <svg class="filter-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <defs>
+                            <filter id="navy-default" color-interpolation-filters="sRGB"><feFlood class="icon-default-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                            <filter id="navy-hover" color-interpolation-filters="sRGB"><feFlood class="icon-hover-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                        </defs>
+                    </svg>
+                    <h3>Dark navy</h3>
+                    <div class="icons">
+                        <a href="#"><div class="sprite-icon icon-faq" aria-hidden="true"></div><span>FAQ</span></a>
+                        <a href="#"><div class="sprite-icon icon-assessment2" aria-hidden="true"></div><span>Assessment</span></a>
+                    </div>
+                    <div class="reference"><span class="swatch" style="background: var(--icon-hover-hex)" aria-hidden="true"></span><span>Hover #001F3F</span></div>
+                </article>
+                <article class="sample flood" style="--icon-default-hex: #000000; --icon-hover-hex: #003366; --icon-color: url(#deep-blue-default); --icon-hover: url(#deep-blue-hover)">
+                    <svg class="filter-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <defs>
+                            <filter id="deep-blue-default" color-interpolation-filters="sRGB"><feFlood class="icon-default-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                            <filter id="deep-blue-hover" color-interpolation-filters="sRGB"><feFlood class="icon-hover-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                        </defs>
+                    </svg>
+                    <h3>Deep blue</h3>
+                    <div class="icons">
+                        <a href="#"><div class="sprite-icon icon-faq" aria-hidden="true"></div><span>FAQ</span></a>
+                        <a href="#"><div class="sprite-icon icon-assessment2" aria-hidden="true"></div><span>Assessment</span></a>
+                    </div>
+                    <div class="reference"><span class="swatch" style="background: var(--icon-hover-hex)" aria-hidden="true"></span><span>Hover #003366</span></div>
+                </article>
+                <article class="sample flood" style="--icon-default-hex: #000000; --icon-hover-hex: #483d8b; --icon-color: url(#slate-blue-default); --icon-hover: url(#slate-blue-hover)">
+                    <svg class="filter-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <defs>
+                            <filter id="slate-blue-default" color-interpolation-filters="sRGB"><feFlood class="icon-default-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                            <filter id="slate-blue-hover" color-interpolation-filters="sRGB"><feFlood class="icon-hover-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                        </defs>
+                    </svg>
+                    <h3>Slate blue</h3>
+                    <div class="icons">
+                        <a href="#"><div class="sprite-icon icon-faq" aria-hidden="true"></div><span>FAQ</span></a>
+                        <a href="#"><div class="sprite-icon icon-assessment2" aria-hidden="true"></div><span>Assessment</span></a>
+                    </div>
+                    <div class="reference"><span class="swatch" style="background: var(--icon-hover-hex)" aria-hidden="true"></span><span>Hover #483D8B</span></div>
+                </article>
+                <article class="sample flood" style="--icon-default-hex: #000000; --icon-hover-hex: #364f6b; --icon-color: url(#blue-gray-default); --icon-hover: url(#blue-gray-hover)">
+                    <svg class="filter-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <defs>
+                            <filter id="blue-gray-default" color-interpolation-filters="sRGB"><feFlood class="icon-default-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                            <filter id="blue-gray-hover" color-interpolation-filters="sRGB"><feFlood class="icon-hover-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                        </defs>
+                    </svg>
+                    <h3>Blue-gray</h3>
+                    <div class="icons">
+                        <a href="#"><div class="sprite-icon icon-faq" aria-hidden="true"></div><span>FAQ</span></a>
+                        <a href="#"><div class="sprite-icon icon-assessment2" aria-hidden="true"></div><span>Assessment</span></a>
+                    </div>
+                    <div class="reference"><span class="swatch" style="background: var(--icon-hover-hex)" aria-hidden="true"></span><span>Hover #364F6B</span></div>
+                </article>
+                <article class="sample flood" style="--icon-default-hex: #000000; --icon-hover-hex: #2c3e50; --icon-color: url(#muted-navy-default); --icon-hover: url(#muted-navy-hover)">
+                    <svg class="filter-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <defs>
+                            <filter id="muted-navy-default" color-interpolation-filters="sRGB"><feFlood class="icon-default-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                            <filter id="muted-navy-hover" color-interpolation-filters="sRGB"><feFlood class="icon-hover-fill" result="brand-color" /><feComposite in="brand-color" in2="SourceAlpha" operator="in" /></filter>
+                        </defs>
+                    </svg>
+                    <h3>Muted navy</h3>
+                    <div class="icons">
+                        <a href="#"><div class="sprite-icon icon-faq" aria-hidden="true"></div><span>FAQ</span></a>
+                        <a href="#"><div class="sprite-icon icon-assessment2" aria-hidden="true"></div><span>Assessment</span></a>
+                    </div>
+                    <div class="reference"><span class="swatch" style="background: var(--icon-hover-hex)" aria-hidden="true"></span><span>Hover #2C3E50</span></div>
+                </article>
+            </div>
+        </section>
     </main>
     <footer>
         <p class="status">50 x 50 px / solid.svg / sRGB / alpha preserved</p>

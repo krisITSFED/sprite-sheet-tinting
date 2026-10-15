@@ -4,8 +4,9 @@
     color: #202421;
     background: #f3f5f4;
     --line: #cbd3cf;
-    --icon-hover: url(#tint-indigo);
-    --icon-default-hex: #006644;
+    --icon-color: url(#icon-brand-default); /* <svg> with ID "icon-brand-default" providing the default icon color */
+    --icon-hover: url(#icon-brand-hover); /* <svg> with ID "icon-brand-hover" providing the hover icon color */
+    --icon-default-hex: #000000;
     --icon-hover-hex: #282a73;
     --original-hover: brightness(0) saturate(100%) invert(19%) sepia(16%) saturate(5295%) hue-rotate(217deg) brightness(91%) contrast(103%);
 }
@@ -68,7 +69,7 @@ section {
 
 .comparison {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     border-top: 1px solid var(--line);
 }
 
@@ -124,7 +125,7 @@ ul {
     min-height: 50px;
     width: 50px;
     min-width: 50px;
-    filter: brightness(0);
+    filter: none;
 }
 
 .icon-faq {
@@ -140,22 +141,12 @@ body.force-hover .original .sprite-icon {
     filter: var(--original-hover);
 }
 
-.matrix :is(a, .side-tab):is(:hover, :focus, :focus-visible) .sprite-icon,
-body.force-hover .matrix .sprite-icon {
-    filter: var(--icon-hover);
-}
-
 .icon-default-fill {
     flood-color: var(--icon-default-hex, #000000);
 }
 
 .icon-hover-fill {
     flood-color: var(--icon-hover-hex, #000000);
-}
-
-.flood {
-    --icon-color: url(#icon-brand-default);
-    --icon-hover: url(#icon-brand-hover);
 }
 
 .flood .sprite-icon {
@@ -206,20 +197,6 @@ body.force-hover .flood .swatch {
     border: 1px solid #0002;
 }
 
-.palette {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-}
-
-.palette article {
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    background: white;
-    padding: 20px;
-    min-width: 0;
-}
-
 .status {
     font-size: 13px;
     color: #525e57;
@@ -239,8 +216,7 @@ footer {
 
 @media (max-width: 700px) {
 
-    .comparison,
-    .palette {
+    .comparison {
         grid-template-columns: 1fr;
     }
 

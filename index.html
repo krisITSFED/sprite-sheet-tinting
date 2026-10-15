@@ -9,12 +9,13 @@
 </head>
 
 <body>
+    <!-- BEGIN SHARED TEMPLATE ADDITION: universal icon tint filters.
+         Include once near the start of body in each document using these filters (including iframes).
+         Keep this SVG inline in the DOM; colors come from client branding CSS.
+         Requires the shared .filter-defs, .icon-default-fill, and .icon-hover-fill CSS rules.
+         Pending iOS 26 flood-hover verification and broader browser testing before production rollout. -->
     <svg class="filter-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
         <defs id="tint-defs">
-            <filter id="tint-indigo" color-interpolation-filters="sRGB">
-                <feColorMatrix type="matrix"
-                    values="0 0 0 0 0.1568627451 0 0 0 0 0.1647058824 0 0 0 0 0.4509803922 0 0 0 1 0" />
-            </filter>
             <filter id="icon-brand-default" color-interpolation-filters="sRGB">
                 <feFlood class="icon-default-fill" result="brand-color" />
                 <feComposite in="brand-color" in2="SourceAlpha" operator="in" />
@@ -25,6 +26,7 @@
             </filter>
         </defs>
     </svg>
+    <!-- END SHARED TEMPLATE ADDITION. The remaining page is the R&D test harness. -->
     <header>
         <h1>Sprite tinting / browser test</h1>
         <label><input id="force-hover" type="checkbox"> Hold hover state</label>
@@ -35,32 +37,54 @@
             <div class="comparison">
                 <article class="sample" id="black-control">
                     <h3>Black control</h3>
-                    <div class="icons"></div>
+                    <div class="icons">
+                        <a href="#" class="editableHTML">
+                            <div class="sprite-icon icon-faq" aria-hidden="true"></div><span class="lnk-nav-txt">FAQ</span>
+                        </a>
+                        <ul role="tablist" aria-label="Assessment sample">
+                            <li class="tab side-tab" role="tab" tabindex="0" aria-selected="true">
+                                <div class="sprite-icon icon-assessment2" aria-hidden="true"></div>
+                                <div class="db-icon-txt">Assessment</div>
+                            </li>
+                        </ul>
+                    </div>
                 </article>
                 <article class="sample original" id="original">
                     <h3>Original CSS chain</h3>
-                    <div class="icons"></div>
-                </article>
-                <article class="sample matrix" id="inline-matrix">
-                    <h3>Inline SVG matrix</h3>
-                    <div class="icons"></div>
+                    <div class="icons">
+                        <a href="#" class="editableHTML">
+                            <div class="sprite-icon icon-faq" aria-hidden="true"></div><span class="lnk-nav-txt">FAQ</span>
+                        </a>
+                        <ul role="tablist" aria-label="Assessment sample">
+                            <li class="tab side-tab" role="tab" tabindex="0" aria-selected="true">
+                                <div class="sprite-icon icon-assessment2" aria-hidden="true"></div>
+                                <div class="db-icon-txt">Assessment</div>
+                            </li>
+                        </ul>
+                    </div>
                 </article>
                 <article class="sample flood" id="inline-flood">
-                    <h3>Inline SVG flood / CSS branding</h3>
-                    <div class="icons"></div>
+                    <h3>Universal SVG tint / CSS branding</h3>
+                    <div class="icons">
+                        <a href="#" class="editableHTML">
+                            <div class="sprite-icon icon-faq" aria-hidden="true"></div><span class="lnk-nav-txt">FAQ</span>
+                        </a>
+                        <ul role="tablist" aria-label="Assessment sample">
+                            <li class="tab side-tab" role="tab" tabindex="0" aria-selected="true">
+                                <div class="sprite-icon icon-assessment2" aria-hidden="true"></div>
+                                <div class="db-icon-txt">Assessment</div>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="brand-controls">
-                        <label>Default <input id="brand-default" type="color" value="#006644"></label>
+                        <label>Default <input id="brand-default" type="color" value="#000000"></label>
                         <label>Hover <input id="brand-hover" type="color" value="#282a73"></label>
                     </div>
-                    <div class="reference"><span class="swatch" aria-hidden="true"></span><span id="brand-reference">#006644</span></div>
+                    <div class="reference"><span class="swatch" aria-hidden="true"></span><span id="brand-reference">#000000</span></div>
                 </article>
             </div>
             <div class="reference" style="--target: #282a73"><span class="swatch"
                     aria-hidden="true"></span><span>#282A73 reference</span></div>
-        </section>
-        <section aria-labelledby="palette-heading">
-            <h2 id="palette-heading">Inline matrix / color checks</h2>
-            <div class="palette" id="palette"></div>
         </section>
     </main>
     <footer>
@@ -68,67 +92,7 @@
         <p class="status" id="sprite-status" role="status">Sprite: loading</p>
         <p class="status" id="browser"></p>
     </footer>
-    <template id="icon-pair">
-        <a href="#" class="editableHTML">
-            <div class="sprite-icon icon-faq" aria-hidden="true"></div><span class="lnk-nav-txt">FAQ</span>
-        </a>
-        <ul role="tablist" aria-label="Assessment sample">
-            <li class="tab side-tab" role="tab" tabindex="0" aria-selected="true">
-                <div class="sprite-icon icon-assessment2" aria-hidden="true"></div>
-                <div class="db-icon-txt">Assessment</div>
-            </li>
-        </ul>
-    </template>
     <script>
-        const namespace = 'http://www.w3.org/2000/svg';
-        const colors = [
-            ['Dark navy', '#001F3F'],
-            ['Deep blue', '#003366'],
-            ['Slate blue', '#483D8B'],
-            ['Blue-gray', '#364F6B'],
-            ['Muted navy', '#2C3E50'],
-            ['Deep indigo', '#282A73']
-        ];
-        const template = document.querySelector('#icon-pair');
-        const definitions = document.querySelector('#tint-defs');
-        const palette = document.querySelector('#palette');
-
-        document.querySelectorAll('.comparison .icons').forEach(container => {
-            container.append(template.content.cloneNode(true));
-        });
-
-        colors.forEach(([name, hex], index) => {
-            const channels = [1, 3, 5].map(offset => parseInt(hex.slice(offset, offset + 2), 16) / 255);
-            const filter = document.createElementNS(namespace, 'filter');
-            filter.id = `tint-palette-${index}`;
-            filter.setAttribute('color-interpolation-filters', 'sRGB');
-            const matrix = document.createElementNS(namespace, 'feColorMatrix');
-            matrix.setAttribute('type', 'matrix');
-            matrix.setAttribute('values', `0 0 0 0 ${channels[0]} 0 0 0 0 ${channels[1]} 0 0 0 0 ${channels[2]} 0 0 0 1 0`);
-            filter.append(matrix);
-            definitions.append(filter);
-
-            const article = document.createElement('article');
-            article.className = 'matrix';
-            article.style.setProperty('--icon-hover', `url(#${filter.id})`);
-            article.style.setProperty('--target', hex);
-            const heading = document.createElement('h3');
-            heading.textContent = name;
-            const icons = document.createElement('div');
-            icons.className = 'icons';
-            icons.append(template.content.cloneNode(true));
-            const reference = document.createElement('div');
-            reference.className = 'reference';
-            const swatch = document.createElement('span');
-            swatch.className = 'swatch';
-            swatch.setAttribute('aria-hidden', 'true');
-            const label = document.createElement('span');
-            label.textContent = hex;
-            reference.append(swatch, label);
-            article.append(heading, icons, reference);
-            palette.append(article);
-        });
-
         document.querySelector('#force-hover').addEventListener('change', event => {
             document.body.classList.toggle('force-hover', event.target.checked);
             updateBrandReference();

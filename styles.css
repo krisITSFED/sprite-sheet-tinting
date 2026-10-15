@@ -1,0 +1,256 @@
+:root {
+    color-scheme: light;
+    font-family: "Segoe UI", sans-serif;
+    color: #202421;
+    background: #f3f5f4;
+    --line: #cbd3cf;
+    --icon-hover: url(#tint-indigo);
+    --icon-default-hex: #006644;
+    --icon-hover-hex: #282a73;
+    --original-hover: brightness(0) saturate(100%) invert(19%) sepia(16%) saturate(5295%) hue-rotate(217deg) brightness(91%) contrast(103%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+header,
+main,
+footer {
+    max-width: 1120px;
+    margin: auto;
+    padding: 24px;
+}
+
+header {
+    border-bottom: 1px solid var(--line);
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 650;
+    margin: 0 0 18px;
+}
+
+h2 {
+    font-size: 18px;
+    margin: 0 0 16px;
+}
+
+h3 {
+    font-size: 15px;
+    margin: 0 0 18px;
+}
+
+p {
+    margin: 8px 0;
+}
+
+label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #13734d;
+}
+
+section {
+    margin-bottom: 32px;
+}
+
+.comparison {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--line);
+}
+
+.sample {
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--line);
+    background: white;
+    min-width: 0;
+}
+
+.sample+.sample {
+    border-left: 1px solid var(--line);
+}
+
+.icons {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+a,
+.side-tab {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+a:focus-visible,
+.side-tab:focus-visible {
+    outline: 2px solid #13734d;
+    outline-offset: 3px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sprite-icon {
+    display: block;
+    background-image: url("solid.svg");
+    background-repeat: no-repeat;
+    background-size: 500px 1000px;
+    height: 50px;
+    min-height: 50px;
+    width: 50px;
+    min-width: 50px;
+    filter: brightness(0);
+}
+
+.icon-faq {
+    background-position: 22.2% 31.5%;
+}
+
+.icon-assessment2 {
+    background-position: 0 52.5%;
+}
+
+.original :is(a, .side-tab):is(:hover, :focus, :focus-visible) .sprite-icon,
+body.force-hover .original .sprite-icon {
+    filter: var(--original-hover);
+}
+
+.matrix :is(a, .side-tab):is(:hover, :focus, :focus-visible) .sprite-icon,
+body.force-hover .matrix .sprite-icon {
+    filter: var(--icon-hover);
+}
+
+.icon-default-fill {
+    flood-color: var(--icon-default-hex, #000000);
+}
+
+.icon-hover-fill {
+    flood-color: var(--icon-hover-hex, #000000);
+}
+
+.flood {
+    --icon-color: url(#icon-brand-default);
+    --icon-hover: url(#icon-brand-hover);
+}
+
+.flood .sprite-icon {
+    filter: var(--icon-color);
+}
+
+.flood :is(a, .side-tab):is(:hover, :focus, :focus-visible) .sprite-icon,
+body.force-hover .flood .sprite-icon {
+    filter: var(--icon-hover);
+}
+
+.brand-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+input[type="color"] {
+    width: 40px;
+    height: 32px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.flood .swatch {
+    background: var(--icon-default-hex);
+}
+
+body.force-hover .flood .swatch {
+    background: var(--icon-hover-hex);
+}
+
+.reference {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    font-family: Consolas, monospace;
+}
+
+.swatch {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    background: var(--target);
+    border: 1px solid #0002;
+}
+
+.palette {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.palette article {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: white;
+    padding: 20px;
+    min-width: 0;
+}
+
+.status {
+    font-size: 13px;
+    color: #525e57;
+    overflow-wrap: anywhere;
+}
+
+footer {
+    border-top: 1px solid var(--line);
+}
+
+.filter-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 700px) {
+
+    .comparison,
+    .palette {
+        grid-template-columns: 1fr;
+    }
+
+    .sample+.sample {
+        border-left: 0;
+    }
+
+    header,
+    main,
+    footer {
+        padding: 20px 16px;
+    }
+}
